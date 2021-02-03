@@ -1,0 +1,14 @@
+.dialogs{
+    padding: 20px;
+    font-size: 24px;
+    color: white;
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+.dialog{
+    text-decoration: none;
+    color: #3b014e;
+}
+.message{
+
+}
