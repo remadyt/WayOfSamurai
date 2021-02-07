@@ -5,10 +5,12 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
-import  {RootStateType} from './redux/state'
+import {RootStateType} from './redux/state'
 
 type PropsType = {
     state: RootStateType
+    addPost: () => void
+    newPostText: (newText: string) => void
 }
 
 function App(props:PropsType) {
@@ -18,7 +20,7 @@ function App(props:PropsType) {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path='/profile' render={() => <Profile state={props.state}/>}/>
+                    <Route path='/profile' render={() => <Profile state={props.state} addPost={props.addPost} newPostText={props.newPostText} />}/>
                     <Route path='/dialogs' render={() => <Dialogs state={props.state} />}/>
                 </div>
             </div>

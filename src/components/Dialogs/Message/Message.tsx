@@ -5,8 +5,11 @@ type PropsType = {
 }
 const MessageItem = (props:PropsType) => {
     return (
-        <div className={s.message}>{props.message}</div>
+        <div className={s.message}>{props.message}
+        </div>
+
     )
 }
+
 
 export default MessageItem

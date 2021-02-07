@@ -6,6 +6,7 @@ import {RootStateType} from "../../redux/state";
 
 type PropsType = {
     state: RootStateType
+
 }
 
 function Dialogs (props:PropsType) {
