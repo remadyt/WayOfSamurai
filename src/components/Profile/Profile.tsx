@@ -1,21 +1,23 @@
 import React from 'react';
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import { RootStateType} from "../../redux/state";
+import {ActionsType, RootStateType, StoreType} from "../../typeAll";
+import MyPostsContainer from "./MyPosts/Posts/MyPostsContainer";
+
 
 type PropsType = {
-    state: RootStateType
-    addPost: () => void
-    newPostText: (newText: string) => void
+    store:StoreType
 }
 
 const Profile = (props:PropsType) => {
     return (
         <div>
             <ProfileInfo  />
-            <MyPosts state={props.state} addPost={props.addPost} newPostText={props.newPostText}   />
+            <MyPostsContainer store={props.store} />
         </div>
     )
+
+
 }
 export default Profile;
 

@@ -4,13 +4,12 @@ import {BrowserRouter,Route} from "react-router-dom";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
-import Dialogs from "./components/Dialogs/Dialogs";
-import {RootStateType} from './redux/state'
+import {StoreType} from "./typeAll";
+import DialogsContainer from "./components/Dialogs/Message/DialogsContainer";
+
 
 type PropsType = {
-    state: RootStateType
-    addPost: () => void
-    newPostText: (newText: string) => void
+    store:StoreType
 }
 
 function App(props:PropsType) {
@@ -20,8 +19,8 @@ function App(props:PropsType) {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path='/profile' render={() => <Profile state={props.state} addPost={props.addPost} newPostText={props.newPostText} />}/>
-                    <Route path='/dialogs' render={() => <Dialogs state={props.state} />}/>
+                    <Route path='/profile' render={() => <Profile store={props.store}  />}/>
+                    <Route path='/dialogs' render={() => <DialogsContainer store={props.store} />}/>
                 </div>
             </div>
         </BrowserRouter>
