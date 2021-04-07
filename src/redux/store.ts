@@ -15,9 +15,9 @@ export let store: StoreType = {
 
         dialogsPage: {
             messages: [
-                {id: 1, message: 'How are you?', likeCounts: 12},
-                {id: 1, message: 'How old are you', likeCounts: 12},
-                {id: 1, message: 'Where are you from?', likeCounts: 12},
+                {id: 1, message: 'How are you?'},
+                {id: 1, message: 'How old are you'},
+                {id: 1, message: 'Where are you from?'},
             ],
             dialogs: [
                 {id: 1, name: 'Dmitriy'},

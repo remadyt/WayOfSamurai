@@ -12,7 +12,7 @@ type PropsType = {
 }
 
 const MyPosts = (props: PropsType) => {
-    let postsItem = props.state.posts.map(p => <Post message={p.message} likesCount={p.likeCounts} />)
+    let postsItem = props.state.posts.map(p => <Post message={p.message} likesCount={p.likeCounts}/>)
     let newPostElement = React.createRef<HTMLTextAreaElement>()
     let addPost = () => {
         if (newPostElement.current) {
@@ -20,8 +20,6 @@ const MyPosts = (props: PropsType) => {
         }
     }
     let onPostChange = () => {
-        /*let text = newPostElement.current?.value
-        props.newPostCreate.current.value*/
         if (newPostElement.current) {
             let text = newPostElement.current.value
             props.onPostChange(text)

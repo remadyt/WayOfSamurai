@@ -1,19 +1,15 @@
 import React from 'react';
-import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {ActionsType, RootStateType, StoreType} from "../../typeAll";
-import MyPostsContainer from "./MyPosts/Posts/MyPostsContainer";
+import {StoreType} from "../../typeAll";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 
-type PropsType = {
-    store:StoreType
-}
 
-const Profile = (props:PropsType) => {
+const Profile = () => {
     return (
         <div>
             <ProfileInfo  />
-            <MyPostsContainer store={props.store} />
+            <MyPostsContainer/>
         </div>
     )
 
