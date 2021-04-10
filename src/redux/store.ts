@@ -2,6 +2,7 @@ import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import {StoreType} from "../typeAll";
 
+/*
 export let store: StoreType = {
     _state: {
         profilePage: {
@@ -49,4 +50,5 @@ export let store: StoreType = {
 
 
 export default store
+*/
 

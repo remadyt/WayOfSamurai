@@ -1,45 +1,12 @@
-import {ActionsType, FollowType, SetUsersType, UnFollowType} from "../typeAll";
-import {type} from "os";
+import {ActionsType, FollowType, SetUsersType, UnFollowType, UserType} from "../typeAll";
 
-
-let initialState = {
-    users: [
-        {
-            id: 1,
-            followed: true,
-            fullName: 'Maxim',
-            photoUrl: 'https://www.vokrug.tv/pic/person/e/b/f/1/ebf14965f14a2a2bf01dbc0e34d5f3b6.jpg' ,
-            status: 'blablabla',
-            location: {
-                city: 'Minsk',
-                country: 'Belarus'
-            }
-        },
-        {
-            id: 2,
-            followed: false,
-            photoUrl: 'https://www.vokrug.tv/pic/person/e/b/f/1/ebf14965f14a2a2bf01dbc0e34d5f3b6.jpg' ,
-            fullName: 'Kirill',
-            status: 'blablabla',
-            location: {
-                city: 'Moscow',
-                country: 'Russia'
-            }
-        },
-        {
-            id: 3,
-            followed: true,
-            photoUrl: 'https://www.vokrug.tv/pic/person/e/b/f/1/ebf14965f14a2a2bf01dbc0e34d5f3b6.jpg' ,
-            fullName: 'Anton',
-            status: 'blablabla',
-            location: {
-                city: 'Kiev',
-                country: 'Ukraine'
-            }
-        }
-    ]
+export type InitialStateType = {
+    users: Array<UserType>
 }
-export const userReducer = (state = initialState, action: ActionsType) => {
+let initialState:InitialStateType = {
+    users: []
+}
+export const userReducer = (state = initialState, action: ActionsType):InitialStateType => {
     switch (action.type) {
         case FOLLOW: {
             return {
@@ -85,5 +52,6 @@ export const unfollowAC = (userId: number): UnFollowType => (
     {type: UNFOLLOW, userId}
 )
 
-export const setUsersAC = (users: any): SetUsersType => ({type: SET_USERS, users})
+
+export const setUsersAC = (users: UserType[]): SetUsersType => ({type: SET_USERS, users})
 

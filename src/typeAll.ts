@@ -1,5 +1,4 @@
 
-
 export type ActionsType = AddPostType
     | NewPostType
     | sendMessageType
@@ -23,13 +22,12 @@ export type dialogsPage = {
 export type UserType = {
     id: number,
     followed: boolean,
-    fullName: string,
-    photoUrl: string ,
-    status: string,
-    location: {
-        city: string,
-        country: string
-    }
+    name: string,
+    photos: {
+        small: null,
+        large: string
+    },
+    status: null,
 }
 export type messageType = {
     id: number
@@ -59,16 +57,16 @@ export type NewPostType = {
 }
 
 export type FollowType = {
-    type:'FOLLOW',
+    type: 'FOLLOW',
     userId: number
 }
 export type UnFollowType = {
-    type:'UNFOLLOW',
+    type: 'UNFOLLOW',
     userId: number
 }
 export type SetUsersType = {
-    type:'SET_USERS',
-    users:any
+    type: 'SET_USERS',
+    users: UserType[]
 }
 
 export type postType = {
@@ -77,10 +75,10 @@ export type postType = {
     likeCounts: number
 }
 
-export type sendMessageType ={
-    type:'SEND-MESSAGE'
+export type sendMessageType = {
+    type: 'SEND-MESSAGE'
 }
 export type updateNewMessageBody = {
     type: 'UPDATE-NEW-MESSAGE-BODY'
-    body:string
+    body: string
 }
