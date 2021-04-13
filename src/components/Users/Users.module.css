@@ -2,3 +2,10 @@
     width: 100px;
     height: 100px;
 }
+.bold{
+    cursor: pointer;
+    font-weight: 700;
+}
+.def {
+    cursor: pointer;
+}

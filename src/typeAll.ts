@@ -6,6 +6,8 @@ export type ActionsType = AddPostType
     | FollowType
     | UnFollowType
     | SetUsersType
+    | SetCurrentPageType
+    | setTotalCountType
 
 export type StoreType = {
     getState: () => RootStateType
@@ -69,6 +71,14 @@ export type SetUsersType = {
     users: UserType[]
 }
 
+export type SetCurrentPageType = {
+    type: 'SET_CURRENT_PAGE',
+    currentPage: number
+}
+export type setTotalCountType = {
+    type:'SET_TOTAL_COUNT'
+    totalCount: number
+}
 export type postType = {
     id: number
     message: string
