@@ -4,22 +4,22 @@ import {
     SetCurrentPageType, setTotalCountType,
     SetUsersType,
     UnFollowType,
-    updateNewMessageBody,
     UserType
 } from "../typeAll";
 
 export type InitialStateType = {
-    users: Array<UserType>,
-    pageSize: number,
-    totalUsersCount: number,
+    users: Array<UserType>
+    pageSize: number
+    totalUsersCount: number
     currentPage: number
-
+    isFetching: boolean
 }
 let initialState:InitialStateType = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 export const userReducer = (state = initialState, action: ActionsType):InitialStateType => {
     switch (action.type) {
@@ -68,9 +68,9 @@ const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT'
 
-export const followAC = (userId: number): FollowType => ({type: FOLLOW, userId})
-export const unfollowAC = (userId: number): UnFollowType => ({type: UNFOLLOW, userId})
-export const setUsersAC = (users: UserType[]): SetUsersType => ({type: SET_USERS, users})
-export const setCurrentPageAC = (currentPage:number): SetCurrentPageType => ({type:SET_CURRENT_PAGE,currentPage})
-export const setTotalCountAC = (totalCount:number): setTotalCountType => ({type:SET_TOTAL_COUNT,totalCount})
+export const follow = (userId: number): FollowType => ({type: FOLLOW, userId})
+export const unfollow = (userId: number): UnFollowType => ({type: UNFOLLOW, userId})
+export const setUsers = (users: UserType[]): SetUsersType => ({type: SET_USERS, users})
+export const setCurrentPage = (currentPage:number): SetCurrentPageType => ({type:SET_CURRENT_PAGE,currentPage})
+export const setTotalCount = (totalCount:number): setTotalCountType => ({type:SET_TOTAL_COUNT,totalCount})
 

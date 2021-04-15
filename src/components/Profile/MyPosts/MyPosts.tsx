@@ -7,7 +7,7 @@ import {profilePageType} from "../../../typeAll";
 
 type PropsType = {
     addPost: () => void
-    onPostChange: (text:string) => void
+    newPost: (text:string) => void
     state: profilePageType
 }
 
@@ -22,7 +22,7 @@ const MyPosts = (props: PropsType) => {
     let onPostChange = () => {
         if (newPostElement.current) {
             let text = newPostElement.current.value
-            props.onPostChange(text)
+            props.newPost(text)
         }
     }
     return (

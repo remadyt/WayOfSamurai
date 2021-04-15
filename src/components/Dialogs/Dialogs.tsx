@@ -3,11 +3,12 @@ import s from './Dialogs.module.css'
 import DialogItem from "./DialogsItem/DialogItem";
 import MessageItem from "./Message/Message";
 import {dialogsPageType} from "../../typeAll";
+import {sendMessage} from "../../redux/dialogs-reducer";
 
 type PropsType = {
     state:dialogsPageType
-    onSendMessageClick: () => void
-    onNewMessageChange: (body:string) => void
+    sendMessage: () => void
+    updateNewMessage: (body:string) => void
 }
 
 function Dialogs (props:PropsType) {
@@ -15,11 +16,11 @@ function Dialogs (props:PropsType) {
     let messagesElement = props.state.messages.map (m => <MessageItem message={m.message} key={m.id} />)
     let newMessageBody = props.state.newMessageBody
     let onSendMessageClick = () => {
-        props.onSendMessageClick()
+        props.sendMessage()
     }
     let onNewMessageChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
         let body = e.target.value
-        props.onNewMessageChange(body)
+        props.updateNewMessage(body)
     }
     return (
         <div className={s.dialogs}>
@@ -34,7 +35,6 @@ function Dialogs (props:PropsType) {
                         onChange={onNewMessageChange}
                         value={newMessageBody}
                         placeholder='Enter your message' >
-
                         </textarea>
                     </div>
                     <div><button onClick={onSendMessageClick}>Send</button></div>

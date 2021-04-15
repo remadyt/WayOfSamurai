@@ -4,7 +4,7 @@ import {
     dialogsPageType,
     messageType,
     sendMessageType,
-    updateNewMessageBody
+    updateNewMessageType
 } from "../typeAll";
 
 
@@ -50,11 +50,8 @@ const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const SEND_MESSAGE = 'SEND-MESSAGE'
 
 
-export const sendMessageCreate = (): sendMessageType => ({type: SEND_MESSAGE})
-export const updateNewMessageBodyCreator = (body: string): updateNewMessageBody => ({
-    type: UPDATE_NEW_MESSAGE_BODY,
-    body: body
-})
+export const sendMessage = (): sendMessageType => ({type: SEND_MESSAGE})
+export const updateNewMessage = (body: string): updateNewMessageType => ({type: UPDATE_NEW_MESSAGE_BODY, body})
 
 
 export default dialogsReducer

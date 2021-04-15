@@ -1,8 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {Dispatch} from "redux";
 import {AppStateType} from "../../redux/redux-store";
-import {followAC, setCurrentPageAC, setTotalCountAC, setUsersAC, unfollowAC} from "../../redux/user-reducer";
+import {follow, setCurrentPage, setTotalCount, setUsers, unfollow} from "../../redux/user-reducer";
 import {UserType} from "../../typeAll";
 import axios from "axios";
 import Users from "./Users";
@@ -12,16 +11,14 @@ type PropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: UserType[]) => void
-    setCurrentPage: (pageNumber:number) => void
-    setTotalCount: (totalCount:number) => void
+    setCurrentPage: (pageNumber: number) => void
+    setTotalCount: (totalCount: number) => void
     totalUsersCount: number
     pageSize: number
-    currentPage:number
-
-
+    currentPage: number
 }
 
-class UsersContainer extends React.Component<PropsType, {  }> {
+class UsersContainer extends React.Component<PropsType, {}> {
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}count=${this.props.pageSize}`).then(response => {
             this.props.setUsers(response.data.items)
@@ -29,7 +26,8 @@ class UsersContainer extends React.Component<PropsType, {  }> {
 
         })
     }
-    onPageChanged =  (pageNumber:number) =>  {
+
+    onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
             this.props.setUsers(response.data.items)
@@ -62,13 +60,7 @@ type mapStatePropsType = {
     totalUsersCount: number
     currentPage: number
 }
-type mapDispatchPropsType = {
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
-    setUsers: (users: UserType[]) => void
-    setCurrentPage: (pageNumber: number) => void
-    setTotalCount: (totalCount:number) => void
-}
+
 
 let mapStateToProps = (state: AppStateType): mapStatePropsType => {
     return {
@@ -78,25 +70,9 @@ let mapStateToProps = (state: AppStateType): mapStatePropsType => {
         currentPage: state.userPage.currentPage
     }
 }
-let mapDispatchToProps = (dispatch: Dispatch): mapDispatchPropsType => {
-    return {
-        follow: (userId: number) => {
-            dispatch(followAC(userId))
-        },
-        unfollow: (userId: number) => {
-            dispatch(unfollowAC(userId))
-        },
-        setUsers: (users: UserType[]) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (pageNumber:number) => {
-            dispatch(setCurrentPageAC(pageNumber))
-        },
-        setTotalCount: (totalCount:number) => {
-            dispatch(setTotalCountAC(totalCount))
-        }
-    }
-}
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect(mapStateToProps, {
+    follow, unfollow, setUsers,
+    setCurrentPage, setTotalCount
+})(UsersContainer)

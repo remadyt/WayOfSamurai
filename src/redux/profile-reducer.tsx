@@ -38,7 +38,7 @@ const NEW_POST_TEXT = 'NEW-POST-TEXT'
 const ADD_POST = 'ADD-POST'
 
 
-export const addPostCreate = (): AddPostType => ({type: ADD_POST})
-export const newPostCreate = (text: string): NewPostType => ({type: NEW_POST_TEXT, newText: text})
+export const addPost = (): AddPostType => ({type: ADD_POST})
+export const newPost = (text: string): NewPostType => ({type: NEW_POST_TEXT, newText: text})
 
 export default profileReducer

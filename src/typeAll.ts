@@ -2,7 +2,7 @@
 export type ActionsType = AddPostType
     | NewPostType
     | sendMessageType
-    | updateNewMessageBody
+    | updateNewMessageType
     | FollowType
     | UnFollowType
     | SetUsersType
@@ -88,7 +88,7 @@ export type postType = {
 export type sendMessageType = {
     type: 'SEND-MESSAGE'
 }
-export type updateNewMessageBody = {
+export type updateNewMessageType = {
     type: 'UPDATE-NEW-MESSAGE-BODY'
     body: string
 }
