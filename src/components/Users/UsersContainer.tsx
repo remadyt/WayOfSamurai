@@ -5,7 +5,6 @@ import {follow, setCurrentPage, setTotalCount, setUsers, toggleIsFetching, unfol
 import {UserType} from "../../typeAll";
 import axios from "axios";
 import Users from "./Users";
-import preloader from '../../assets/preloader/preloader-user-page.gif'
 import Preloader from '../common/Preloader/Preloader';
 
 type PropsType = {

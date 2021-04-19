@@ -1,3 +1,4 @@
+import {ProfileType} from "./components/Profile/ProfileContainer";
 
 export type ActionsType = AddPostType
     | NewPostType
@@ -9,6 +10,7 @@ export type ActionsType = AddPostType
     | SetCurrentPageType
     | setTotalCountType
     | toggleIsFetchingType
+    | setUserProfileType
 
 export type StoreType = {
     getState: () => RootStateType
@@ -77,8 +79,13 @@ export type toggleIsFetchingType = {
 }
 
 export type SetCurrentPageType = {
-    type: 'SET_CURRENT_PAGE',
+    type: 'SET_CURRENT_PAGE'
     currentPage: number
+}
+
+export type setUserProfileType = {
+    type: 'SET_USER_PROFILE'
+    profile: ProfileType
 }
 export type setTotalCountType = {
     type:'SET_TOTAL_COUNT'

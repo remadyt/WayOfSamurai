@@ -2,6 +2,7 @@ import React from 'react';
 import styles from "./Users.module.css";
 import userPhoto from "../../assets/large.jpg";
 import {UserType} from "../../typeAll";
+import { NavLink } from 'react-router-dom';
 
 type PropsType = {
     users: UserType[]
@@ -36,8 +37,10 @@ const Users = (props: PropsType) => {
                     <div key={u.id}>
                     <span>
                         <div>
+                            <NavLink to={'/profile/' + u.id}>
                             <img src={u.photos.small !== null ? u.photos.large : userPhoto} alt="#"
                                  className={styles.userPhoto}/>
+                            </NavLink>
                         </div>
                         <div>
                             {u.followed
