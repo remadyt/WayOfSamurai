@@ -8,6 +8,7 @@ export type ActionsType = AddPostType
     | SetUsersType
     | SetCurrentPageType
     | setTotalCountType
+    | toggleIsFetchingType
 
 export type StoreType = {
     getState: () => RootStateType
@@ -69,6 +70,10 @@ export type UnFollowType = {
 export type SetUsersType = {
     type: 'SET_USERS',
     users: UserType[]
+}
+export type toggleIsFetchingType = {
+    type: 'TOGGLE_IS_FETCHING'
+    isFetching: boolean
 }
 
 export type SetCurrentPageType = {
