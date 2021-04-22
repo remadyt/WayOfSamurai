@@ -1,4 +1,5 @@
 import {ProfileType} from "./components/Profile/ProfileContainer";
+import {DataType, setAuthUserData} from "./redux/auth-reducer";
 
 export type ActionsType = AddPostType
     | NewPostType
@@ -11,6 +12,7 @@ export type ActionsType = AddPostType
     | setTotalCountType
     | toggleIsFetchingType
     | setUserProfileType
+    | SetUserDataType
 
 export type StoreType = {
     getState: () => RootStateType
@@ -87,6 +89,8 @@ export type setUserProfileType = {
     type: 'SET_USER_PROFILE'
     profile: ProfileType
 }
+
+export type SetUserDataType = ReturnType<typeof setAuthUserData>
 export type setTotalCountType = {
     type:'SET_TOTAL_COUNT'
     totalCount: number

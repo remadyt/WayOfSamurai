@@ -11,6 +11,9 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 );
-console.log('State changed')
+
+
+// @ts-ignore
+window.store = store
 
 
