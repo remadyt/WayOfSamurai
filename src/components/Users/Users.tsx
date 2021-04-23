@@ -2,7 +2,8 @@ import React from 'react';
 import styles from "./Users.module.css";
 import userPhoto from "../../assets/large.jpg";
 import {UserType} from "../../typeAll";
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
+import axios from "axios";
 
 type PropsType = {
     users: UserType[]
@@ -23,6 +24,8 @@ const Users = (props: PropsType) => {
     for (let i = 1; i <= pageCount; i++) {
         page.push(i)
     }
+
+
     return (
         <div>
             <div>
@@ -44,8 +47,35 @@ const Users = (props: PropsType) => {
                         </div>
                         <div>
                             {u.followed
-                                ? <button onClick={() => props.unfollow(u.id)}>UnFollow</button>
-                                : <button onClick={() => props.follow(u.id)}>Follow</button>}
+                                ? <button onClick={() => {
+                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                                        withCredentials: true,
+                                        headers: {
+                                            "API-KEY" : "c6228292-de61-456e-9d8a-96d57a90266e"
+                                        }
+                                    }).then(response => {
+                                        if (response.data.resultCode === 0) {
+                                            props.unfollow(u.id)
+                                        }
+                                    })
+
+                                    //
+
+                                }}>UnFollow</button>
+                                : <button onClick={() => {
+                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                                        withCredentials: true,
+                                        headers: {
+                                            "API-KEY" : "c6228292-de61-456e-9d8a-96d57a90266e"
+                                        }
+                                    }).then(response => {
+                                        if (response.data.resultCode === 0) {
+                                            props.follow(u.id)
+                                        }
+                                    })
+
+
+                                }}>Follow</button>}
                         </div>
                     </span>
                         <span>
