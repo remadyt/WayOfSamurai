@@ -13,6 +13,7 @@ export type ActionsType = AddPostType
     | toggleIsFetchingType
     | setUserProfileType
     | SetUserDataType
+    | followingInProgressType
 
 export type StoreType = {
     getState: () => RootStateType
@@ -78,6 +79,11 @@ export type SetUsersType = {
 export type toggleIsFetchingType = {
     type: 'TOGGLE_IS_FETCHING'
     isFetching: boolean
+}
+export type followingInProgressType = {
+    type: 'TOGGLE_IS_FOLLOWING'
+    isFetching:boolean
+    userId: number
 }
 
 export type SetCurrentPageType = {
