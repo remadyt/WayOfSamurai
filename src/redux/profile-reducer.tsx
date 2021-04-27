@@ -1,6 +1,10 @@
 
 import {ActionsType, AddPostType, NewPostType, postType, setUserProfileType,} from "../typeAll";
 import {ProfileType} from "../components/Profile/ProfileContainer";
+import {Dispatch} from "redux";
+import {UserApi} from "../api/api";
+
+
 
 let initialState = {
     posts: [
@@ -42,6 +46,14 @@ const NEW_POST_TEXT = 'NEW-POST-TEXT'
 const ADD_POST = 'ADD-POST'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
+export const getUserProfile = (userId:string) => {
+    return (dispatch:Dispatch) => {
+        UserApi.getUserProfile(userId).then(response => {
+            dispatch(setUserProfile(response.data))
+        })
+
+    }
+}
 
 export const addPost = (): AddPostType => ({type: ADD_POST})
 export const newPost = (text: string): NewPostType => ({type: NEW_POST_TEXT, newText: text})
