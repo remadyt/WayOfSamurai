@@ -1,7 +1,6 @@
 import {
     ActionsType,
     dialogsPage,
-    dialogsPageType,
     messageType,
     sendMessageType,
     updateNewMessageType

@@ -104,7 +104,7 @@ export const getUsers = (currentPage: number, pageSize: number) => {
 export const follow = (userId: number) => {
     return (dispatch: Dispatch) => {
         dispatch(toggleFollowingProgress(true, userId))
-        UserApi.Follow(userId).then(response => {
+        UserApi.follow(userId).then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(followSuccess(userId))
             }

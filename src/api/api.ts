@@ -19,15 +19,19 @@ export const UserApi = {
     unFollow(id:number) {
         return instance.delete(`follow/${id}`)
     },
-    Follow(id:number ) {
+    follow(id:number ) {
         return instance.post(`follow/${id}`)
     },
-    getAuth() {
-        return instance.get(`auth/me`, {withCredentials:true})
-    },
+
     getUserProfile (userId: string) {
-        return instance.get(`profile/` + userId)
+        return instance.get(`profile/${userId}`)
     }
 }
 
 
+
+export const AuthApi = {
+    getAuth() {
+        return instance.get(`auth/me`,)
+    }
+}

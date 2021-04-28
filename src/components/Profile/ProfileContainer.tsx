@@ -2,9 +2,10 @@ import React from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {getUserProfile, setUserProfile} from "../../redux/profile-reducer";
-import {RouteComponentProps, withRouter} from 'react-router-dom';
-import {UserApi} from "../../api/api";
+import {getUserProfile} from "../../redux/profile-reducer";
+import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom';
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
+
 
 export type ContactsType = {
     github: string
@@ -33,31 +34,34 @@ export type ProfileType = {
 
 type mapSateToPropsType = {
     profile: ProfileType
+
 }
-type mapDispatchToProps = {
-    setUserProfile: (profile: ProfileType) => void
-}
+
 type MatchParams = {
     userId: string,
+
 }
 
-type PropsType = RouteComponentProps<MatchParams> & OwnParams
-type OwnParams = mapSateToPropsType & mapDispatchToProps
-
+type OwnParams = mapSateToPropsType
+type PropsType = {
+        getUserProfile: (userId: string) => void
+        isAuth: boolean
+    }
+    & RouteComponentProps<MatchParams>
+    & OwnParams
 
 
 class ProfileContainer extends React.Component<PropsType, {}> {
-
-    //need fix
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
             userId = '2'
         }
-        getUserProfile(userId)
+        this.props.getUserProfile(userId)
     }
 
     render() {
+
         return (
             <Profile {...this.props} />
         )
@@ -66,10 +70,11 @@ class ProfileContainer extends React.Component<PropsType, {}> {
 
 
 let mapStateToProps = (state: AppStateType): mapSateToPropsType => ({
-    profile: state.profilePage.profile
+    profile: state.profilePage.profile,
 
 })
 
 let WithUrlDataContainerComponent = withRouter(ProfileContainer)
-export default connect(mapStateToProps, {setUserProfile})(WithUrlDataContainerComponent)
+export default WithAuthRedirect(connect(mapStateToProps, {getUserProfile})
+(WithUrlDataContainerComponent))
 

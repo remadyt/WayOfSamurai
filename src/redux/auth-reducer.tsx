@@ -1,6 +1,6 @@
 import {ActionsType} from "../typeAll";
 import {Dispatch} from "redux";
-import {UserApi} from "../api/api";
+import {AuthApi} from "../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA'
 
@@ -45,7 +45,7 @@ export const authReducer = (state:InitialStateType = initialState, action: Actio
 
 export const auth = () => {
     return (dispatch:Dispatch) => {
-        UserApi.getAuth().then(response => {
+        AuthApi.getAuth().then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(setAuthUserData(response.data.data))
             }

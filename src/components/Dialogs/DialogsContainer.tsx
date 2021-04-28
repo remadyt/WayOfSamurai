@@ -4,20 +4,23 @@ import {dialogsPageType} from "../../typeAll";
 import {sendMessage, updateNewMessage} from "../../redux/dialogs-reducer";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 
 
 type mapStateToPropsType = {
     state: dialogsPageType
+    isAuth: boolean
 }
 
 
 const mapStateToProps = (state:AppStateType):mapStateToPropsType => {
     return{
-        state: state.dialogsPage
+        state: state.dialogsPage,
+        isAuth: state.auth.isAuth
     }
 }
 
 
-const DialogsContainer = connect(mapStateToProps,{sendMessage, updateNewMessage})(Dialogs)
+const DialogsContainer = WithAuthRedirect(connect(mapStateToProps,{sendMessage, updateNewMessage})(Dialogs))
 export default DialogsContainer

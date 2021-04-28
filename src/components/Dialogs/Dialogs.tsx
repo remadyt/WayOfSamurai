@@ -3,7 +3,7 @@ import s from './Dialogs.module.css'
 import DialogItem from "./DialogsItem/DialogItem";
 import MessageItem from "./Message/Message";
 import {dialogsPageType} from "../../typeAll";
-import {sendMessage} from "../../redux/dialogs-reducer";
+import { Redirect } from 'react-router-dom';
 
 type PropsType = {
     state:dialogsPageType
@@ -22,6 +22,7 @@ function Dialogs (props:PropsType) {
         let body = e.target.value
         props.updateNewMessage(body)
     }
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>

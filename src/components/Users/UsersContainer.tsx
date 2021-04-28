@@ -12,6 +12,8 @@ import {
 import {UserType} from "../../typeAll";
 import Users from "./Users";
 import Preloader from '../common/Preloader/Preloader';
+import {Redirect} from "react-router-dom";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 
 type PropsType = {
@@ -72,15 +74,15 @@ let mapStateToProps = (state: AppStateType): mapStatePropsType => {
         totalUsersCount: state.userPage.totalUsersCount,
         currentPage: state.userPage.currentPage,
         isFetching: state.userPage.isFetching,
-        followingInProgress: state.userPage.followingInProgress
+        followingInProgress: state.userPage.followingInProgress,
     }
 }
 
 
-export default connect(mapStateToProps, {
+export default WithAuthRedirect(connect(mapStateToProps, {
     follow, unfollow,
     toggleFollowingProgress,
     getUsers,
 
 
-})(UsersContainer)
+})(UsersContainer))

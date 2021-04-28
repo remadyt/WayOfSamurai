@@ -4,6 +4,7 @@ import Preloader from "../../common/Preloader/Preloader";
 import {ProfileType} from "../ProfileContainer";
 
 
+
 type PropsType = {
     profile: ProfileType
 }
@@ -12,7 +13,7 @@ const ProfileInfo = (props: PropsType) => {
     if (!props.profile) {
         return <Preloader/>
     }
-    console.log(props.profile)
+
     return (
         <div>
             <div>
