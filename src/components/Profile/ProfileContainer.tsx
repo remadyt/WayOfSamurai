@@ -2,7 +2,7 @@ import React from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {getUserProfile} from "../../redux/profile-reducer";
+import {getUserProfile, getUserStatus, updateUserStatus} from "../../redux/profile-reducer";
 import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom';
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
@@ -35,7 +35,7 @@ export type ProfileType = {
 
 type mapSateToPropsType = {
     profile: ProfileType
-
+    status: string
 }
 
 type MatchParams = {
@@ -46,6 +46,8 @@ type MatchParams = {
 type OwnParams = mapSateToPropsType
 type PropsType = {
         getUserProfile: (userId: string) => void
+        getUserStatus: (userId:string) => void
+        updateUserStatus: (status:string) => void
         isAuth: boolean
     }
     & RouteComponentProps<MatchParams>
@@ -59,12 +61,17 @@ class ProfileContainer extends React.Component<PropsType, {}> {
             userId = '2'
         }
         this.props.getUserProfile(userId)
+        this.props.getUserStatus(userId)
     }
 
     render() {
 
         return (
-            <Profile {...this.props} />
+            <Profile {...this.props}
+                     profile={this.props.profile}
+                     status={this.props.status}
+                     updateUserStatus={this.props.updateUserStatus}
+            />
         )
     }
 }
@@ -72,12 +79,13 @@ class ProfileContainer extends React.Component<PropsType, {}> {
 
 let mapStateToProps = (state: AppStateType): mapSateToPropsType => ({
     profile: state.profilePage.profile,
+    status: state.profilePage.status
 
 })
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getUserProfile}),
+    connect(mapStateToProps, {getUserProfile,getUserStatus,updateUserStatus}),
     withRouter,
-    WithAuthRedirect
+    //WithAuthRedirect
 )(ProfileContainer)
 

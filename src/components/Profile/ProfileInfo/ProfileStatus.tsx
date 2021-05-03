@@ -1,30 +1,58 @@
-import React from 'react';
+import React, {ChangeEvent,KeyboardEvent} from 'react';
 
-class ProfileStatus extends React.Component {
+
+type PropsType = {
+    status:string
+    updateUserStatus: (status:string) => void
+}
+class ProfileStatus extends React.Component<PropsType , {}> {
     state = {
         editMode:false,
-        title: '123'
+        status: this.props.status
     }
-    activeEditMode () {
+    activeEditMode =  ()  => {
         this.setState({
             editMode: true
         })
     }
-    deactivatedEditMode () {
+    deactivatedEditMode = () =>  {
         this.setState({
             editMode: false
         })
+        this.props.updateUserStatus(this.state.status)
     }
+
+    onChangeCallback = (e:ChangeEvent<HTMLInputElement>) => {
+        this.setState({
+            status: e.currentTarget.value
+        })
+    }
+    onKeyPressCallback = (e:KeyboardEvent<HTMLInputElement>) => {
+        if(e.key === 'Enter') {
+            this.setState({
+                editMode:false
+            })
+            this.props.updateUserStatus(this.state.status)
+        }
+    }
+
 
     render() {
         return (
             <div>
                 {   !this.state.editMode
                         ? <div>
-                            <span onDoubleClick={this.activeEditMode.bind(this)}>status</span>
+                            <span onDoubleClick={this.activeEditMode}>{this.props.status || 'No status'}</span>
                         </div>
                         : <div>
-                            <input autoFocus onBlur={this.deactivatedEditMode.bind(this)} value="status" type='text'/>
+                            <input
+                                autoFocus
+                                onBlur={this.deactivatedEditMode}
+                                value={this.state.status}
+                                type='text'
+                                onChange={this.onChangeCallback}
+                                onKeyPress={this.onKeyPressCallback}
+                            />
                         </div>
                 }
             </div>

@@ -14,6 +14,7 @@ export type ActionsType = AddPostType
     | setUserProfileType
     | SetUserDataType
     | followingInProgressType
+    | SetStatusType
 
 export type StoreType = {
     getState: () => RootStateType
@@ -75,6 +76,10 @@ export type UnFollowType = {
 export type SetUsersType = {
     type: 'SET_USERS',
     users: UserType[]
+}
+export type SetStatusType = {
+    type:'SET_STATUS'
+    status:string
 }
 export type toggleIsFetchingType = {
     type: 'TOGGLE_IS_FETCHING'

@@ -21,10 +21,18 @@ export const UserApi = {
     },
     follow(id:number ) {
         return instance.post(`follow/${id}`)
-    },
+    }
+}
 
+export const ProfileApi = {
     getUserProfile (userId: string) {
         return instance.get(`profile/${userId}`)
+    },
+    getUserStatus (userId:string) {
+      return instance.get(`profile/status/${userId}`)
+    },
+    updateUserStatus (status:string) {
+      return instance.put(`profile/status`, {status})
     }
 }
 
