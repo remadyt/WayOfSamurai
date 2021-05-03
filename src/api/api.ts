@@ -37,7 +37,6 @@ export const ProfileApi = {
 }
 
 
-
 export const AuthApi = {
     getAuth() {
         return instance.get(`auth/me`,)

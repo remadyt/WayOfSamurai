@@ -5,6 +5,10 @@ type PropsType = {
     status:string
     updateUserStatus: (status:string) => void
 }
+
+type prevPropsType = {
+    status: string
+}
 class ProfileStatus extends React.Component<PropsType , {}> {
     state = {
         editMode:false,
@@ -36,13 +40,20 @@ class ProfileStatus extends React.Component<PropsType , {}> {
         }
     }
 
+    componentDidUpdate(prevProps: prevPropsType) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
+    }
 
     render() {
         return (
             <div>
                 {   !this.state.editMode
                         ? <div>
-                            <span onDoubleClick={this.activeEditMode}>{this.props.status || 'No status'}</span>
+                            <span onDoubleClick={this.activeEditMode}>{this.props.status || 'Enter status'}</span>
                         </div>
                         : <div>
                             <input

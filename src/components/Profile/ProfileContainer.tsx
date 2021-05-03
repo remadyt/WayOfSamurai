@@ -46,8 +46,8 @@ type MatchParams = {
 type OwnParams = mapSateToPropsType
 type PropsType = {
         getUserProfile: (userId: string) => void
-        getUserStatus: (userId:string) => void
-        updateUserStatus: (status:string) => void
+        getUserStatus: (userId: string) => void
+        updateUserStatus: (status: string) => void
         isAuth: boolean
     }
     & RouteComponentProps<MatchParams>
@@ -58,7 +58,7 @@ class ProfileContainer extends React.Component<PropsType, {}> {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId = '2'
+            userId = '13516'
         }
         this.props.getUserProfile(userId)
         this.props.getUserStatus(userId)
@@ -84,7 +84,7 @@ let mapStateToProps = (state: AppStateType): mapSateToPropsType => ({
 })
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getUserProfile,getUserStatus,updateUserStatus}),
+    connect(mapStateToProps, {getUserProfile, getUserStatus, updateUserStatus}),
     withRouter,
     //WithAuthRedirect
 )(ProfileContainer)
